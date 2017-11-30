@@ -9,8 +9,8 @@ public class GeneratorPrime {
 		this.prime = prime;
 	}
 	
-	public int randomPrime(){
-		int num;
+	public long randomPrime(){
+		long num;
 		Random random = new Random();
 		
 		num = random.nextInt(prime)+1;
@@ -21,12 +21,20 @@ public class GeneratorPrime {
 			return randomPrime();
 		
 	}
-	public Boolean checkPrime(int num){
+	public Boolean checkPrime(long num){
 		for(int i=2;i<num;i++){
 			if(num % i == 0)
 				return false;
 		}
 		return true;
-	} 
+	}
+	public long randomNumber(){
+		long num;
+		Random random = new Random();
+		int a = (int)randomPrime();
+		num = random.nextInt(a)+1;
+		
+		return num;
+	}
 	
 }
