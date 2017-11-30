@@ -6,9 +6,11 @@ import java.util.List;
 public class GenerateZ {
 	
 	List<Integer> Zp = new ArrayList<>();
-	public void generateZp(int prime){
-		for(int i = 0;i<prime;i++){
+	public List<Integer> generateZp(int prime){
+		for(int i = 1;i<prime;i++){
 			Zp.add(i);
 		}
+		
+		return Zp;
 	}
 }

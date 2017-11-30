@@ -1,7 +1,11 @@
 package vehicle.main;
 
+import java.util.List;
+
 import vehicle.ecc.EllipticCurve;
 import vehicle.ecc.Point;
+import vehicle.hash.HashChain;
+import vehicle.prime.GenerateZ;
 import vehicle.prime.GeneratorPrime;
 
 public class CallVehicle {
@@ -41,6 +45,14 @@ public class CallVehicle {
 		Point result = P.mult(ge.randomNumber(), a, b, p);
 		System.out.println("W: "+result);
 		
+		System.out.println("----------------------------Vehicle---------------------------");
+		GenerateZ gZ = new GenerateZ();
+		List<Integer> a = gZ.generateZp(41);
+		System.out.println(a);
+		HashChain h = new HashChain();
+		System.out.println(a.get(8));
+		
+		System.out.println("Sij: ");
 		
 	}
 
