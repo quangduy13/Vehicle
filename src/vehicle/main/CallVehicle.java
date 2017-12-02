@@ -25,6 +25,7 @@ public class CallVehicle {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 		EllipticCurve el = new EllipticCurve(a, b, p);
 		System.out.println("Generator G1: ");
 		System.out.println(el.listMust(new Point(Gx, Gy, 1)));
@@ -47,12 +48,26 @@ public class CallVehicle {
 		
 		System.out.println("----------------------------Vehicle---------------------------");
 		GenerateZ gZ = new GenerateZ();
-		List<Integer> a = gZ.generateZp(41);
-		System.out.println(a);
+		List<Integer> a1 = gZ.generateZp(41);
+		System.out.println(a1);
 		HashChain h = new HashChain();
-		System.out.println(a.get(8));
+		System.out.println(a1.get(8));
 		
-		System.out.println("Sij: ");
+		double s = (double)1/(55+9);
+		double Px2 = (double)Px;
+		double Py2 = (double)Py;
+		double Sxij = Px2*s;
+		double Syij = Py2*s;
+		System.out.println("Sij("+Sxij+","+Syij+")");
+		
+		System.out.println(h.H3(4, 3).getX());
+		System.out.println(h.H3(4, 3).getY());
+		Point P1 = new Point(h.H3(4, 3).getX(),h.H3(4, 3).getY(),1);
+		System.out.println("Pseudonym: "+P.mult(5, a, b, p));
+		int alpha = (int)ge.randomNumber();
+		int r = (int)ge.randomNumber();
+		int r1 = (int)ge.randomNumber();
+		System.out.println(alpha +", "+r+", "+r1);
 		
 	}
 

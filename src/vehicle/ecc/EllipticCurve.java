@@ -1,6 +1,9 @@
 package vehicle.ecc;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import vehicle.dto.CyclicDTO;
 
 
 public class EllipticCurve {
@@ -68,18 +71,46 @@ public class EllipticCurve {
 		}
 		return t+s;
 	}
+	List<CyclicDTO> listPoint;
 	
 	public String listMust(Point G){
+		listPoint = new ArrayList<>();
 		String s = "";
 		long N = pointOrder(G);
 		
 		Point temp = new Point(G);
-		for(long i = 1; i < N; i++) {
+		for(int i = 1; i < N; i++) {
+			
 			s += temp + ", ";
 			temp = temp.add(G, getA(), getB(), getP());
+						
+			
 		}
+
 		s += temp + "\n";
 		return s;
+	}
+	public List<CyclicDTO> listMust1(Point G){
+		listPoint = new ArrayList<>();
+		String s = "";
+		long N = pointOrder(G);
+		
+		Point temp = new Point(G);
+		for(int i = 1; i < N; i++) {
+			
+			s += temp + ", ";
+			temp = temp.add(G, getA(), getB(), getP());
+			CyclicDTO cyclicDTO = new CyclicDTO();
+			cyclicDTO.setX(temp.getX());
+			cyclicDTO.setY(temp.getY());
+			listPoint.add(cyclicDTO);
+			
+			
+			
+		}
+
+		s += temp + "\n";
+		return listPoint;
 	}
 	
 	public long pointOrder(Point G) {
