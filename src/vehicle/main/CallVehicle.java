@@ -1,5 +1,21 @@
 package vehicle.main;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import vehicle.ecc.EllipticCurve;
@@ -23,7 +39,7 @@ public class CallVehicle {
 	private static long k = 7; /* initially k = 33 */
 	private static int n = 100; /* initially n = 100 random curves */
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 		// TODO Auto-generated method stub
 		
 		EllipticCurve el = new EllipticCurve(a, b, p);
@@ -68,6 +84,68 @@ public class CallVehicle {
 		int r = (int)ge.randomNumber();
 		int r1 = (int)ge.randomNumber();
 		System.out.println(alpha +", "+r+", "+r1);
+		//generratr c
+		h.H2("Doan duowng nay bi tac(2;3)(23)dadadaadadadadadada", 45);
+		
+		long Xc = el.listMust1(new Point(Gx2,Gy2,1)).get(6).getX();
+		long Yc = el.listMust1(new Point(Gx2,Gy2,1)).get(6).getY();
+		
+		int c = (int)(Xc*Xc+Yc*Yc);
+		System.out.println(c);
+		
+		int z1 = c*alpha + r1;
+		
+		System.out.println(z1);
+		
+		int z2 = c*9 + r;
+		String M = "aaaaaaaaaa";
+		
+		BufferedWriter bw = null;
+		FileWriter fw = null;
+		
+		try{
+			String content = "Nội dung mình muốn viết vào file\n";
+			 
+			fw = new FileWriter("data.txt");
+			bw = new BufferedWriter(fw);
+			bw.write(content);
+			bw.write("dddddddddddddddddddzdddddddd\n");
+			bw.write(String.valueOf(z1));
+			bw.write("\n");
+			bw.write(String.valueOf(z2));
+			bw.write("\n");
+			bw.write("(32,2)\n");
+			System.out.println("Xong");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (bw != null)
+					bw.close();
+				if (fw != null)
+					fw.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		try{
+			
+            FileInputStream fis = new FileInputStream(new File("data.txt"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            String line;
+            while ((line = br.readLine()) != null) {
+                line = line.trim();
+                if (line != null && !line.isEmpty()) {
+                    System.out.println("line data: " + line);
+                }
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+		
+		
 		
 	}
 
